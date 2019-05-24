@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import static java.lang.Math.pow;
 
@@ -10,12 +11,14 @@ public class GeneradorNum extends Thread{
     public int fin;
     public int i, j, aux;
     Random rand = new Random();
+    public ArrayList<GeneradorNum> hilos;
 
     public GeneradorNum (int crackNum, int tam, int inicio, int fin){
         this.tam = tam;
         this.crackNum = crackNum;
         this.inicio = inicio;
         this.fin = fin;
+        this.hilos=new ArrayList<>();
     }
 
     public void run(){
@@ -29,6 +32,11 @@ public class GeneradorNum extends Thread{
 
         System.out.println("\n\nContraseña descifrada: " + passwordNum);
         System.out.println("Tiempo: " + ((endTime-startTime)/1e6)/1000 + " seg.\n");
+
+        System.out.println("Thread terminado: " + Thread.currentThread().getName());
+        Main.limpiarPantalla();
+
+        detenerPrograma();
     }
 
     public int generaPassNum(){
@@ -43,8 +51,12 @@ public class GeneradorNum extends Thread{
     }
 
     public void limpiarPantalla(){
-        for (int i=0; i<50; i++){
+        for (int i=0; i<40; i++){
             System.out.println();
         }
+    }
+
+    public void detenerPrograma(){
+        System.exit(0);
     }
 }

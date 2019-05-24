@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.Math.pow;
@@ -17,15 +18,13 @@ public class Main {
 
             switch (respuesta){
                 case 1:
-                    limpiarPantalla();
-                    System.out.print("Introduce un password numérico a descifrar: ");
+                    System.out.print("\n\n\tIntroduce un password numérico a descifrar: ");
                     inputPassword = sc.nextInt(); //agregar try catch y validación para int max
                     pMax = (int)pow(10, Integer.toString(inputPassword).length())-1; // int pMax 999,999,999
                     ejecutarAlgoritmo(inputPassword, pMax);
                     break;
                 case 2:
-                    limpiarPantalla();
-                    System.out.print("Introduce un password numérico a descifrar: ");
+                    System.out.print("\n\n\t-> Introduce un password numérico a descifrar: ");
                     inputPassword = sc.nextInt(); //agregar try catch y validación para int max
                     pMax = (int)pow(10, Integer.toString(inputPassword).length())-1; // int pMax 999,999,999
                     ejecutarAlgoritmoParalelo(inputPassword, pMax);
@@ -64,7 +63,7 @@ public class Main {
     }
 
     public static void limpiarPantalla(){
-        for (int i=0; i<50; i++){
+        for (int i=0; i<20; i++){
             System.out.println();
         }
     }
