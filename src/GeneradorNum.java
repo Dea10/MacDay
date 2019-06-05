@@ -42,10 +42,18 @@ public class GeneradorNum extends Thread{
     public int generaPassNum(){
         passwordNum = 0;
 
+        /*
         for (i=0; i<tam; i++){
             //passwordNum = rand.nextInt((int)pow(10, tam)-1);
-            passwordNum = rand.nextInt(fin-inicio+1)+inicio;
+
         }
+*/
+        passwordNum = rand.nextInt(fin-inicio+1)+inicio;
+        //cambiar por un generador secuencial y no al azar
+
+//        for(i=inicio; i<fin; i++){
+ //           passwordNum++;
+   //     }
 
         return passwordNum;
     }
