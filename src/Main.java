@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.Math.pow;
@@ -6,8 +5,8 @@ import static java.lang.Math.pow;
 public class Main {
     public static void main(String[] args){
 
-        int inputPassword; // int max 999,999,999
-        int pMax;
+        double inputPassword; // int max 999,999,999
+        double pMax;
         int respuesta;
         Scanner sc = new Scanner(System.in);
 
@@ -19,14 +18,14 @@ public class Main {
             switch (respuesta){
                 case 1:
                     System.out.print("\n\n\tIntroduce un password numérico a descifrar: ");
-                    inputPassword = sc.nextInt(); //agregar try catch y validación para int max
-                    pMax = (int)pow(10, Integer.toString(inputPassword).length())-1; // int pMax 999,999,999
+                    inputPassword = sc.nextDouble(); //agregar try catch y validación para int max
+                    pMax = pow(10, Double.toString(inputPassword).length()-2)-1; // int pMax 999,999,999
                     ejecutarAlgoritmo(inputPassword, pMax);
                     break;
                 case 2:
                     System.out.print("\n\n\t-> Introduce un password numérico a descifrar: ");
-                    inputPassword = sc.nextInt(); //agregar try catch y validación para int max
-                    pMax = (int)pow(10, Integer.toString(inputPassword).length())-1; // int pMax 999,999,999
+                    inputPassword = sc.nextDouble(); //agregar try catch y validación para int max
+                    pMax = pow(10, Double.toString(inputPassword).length()-2)-1; // int pMax 999,999,999
                     ejecutarAlgoritmoParalelo(inputPassword, pMax);
                     break;
                 default:
@@ -68,16 +67,16 @@ public class Main {
         }
     }
 
-    public static void ejecutarAlgoritmo(int p, int pMax){
-        GeneradorNum g0 = new GeneradorNum(p, Integer.toString(p).length(), 0, pMax);
+    public static void ejecutarAlgoritmo(double p, double pMax){
+        GeneradorNum g0 = new GeneradorNum(p,0, pMax);
         g0.start();
     }
 
-    public static void ejecutarAlgoritmoParalelo(int p, int pMax){
-        GeneradorNum g1 = new GeneradorNum(p, Integer.toString(p).length(), 0, pMax/4);
-        GeneradorNum g2 = new GeneradorNum(p, Integer.toString(p).length(), pMax/4, pMax/2);
-        GeneradorNum g3 = new GeneradorNum(p, Integer.toString(p).length(),pMax/2, 3*(pMax/4));
-        GeneradorNum g4 = new GeneradorNum(p, Integer.toString(p).length(),3*(pMax/4), pMax);
+    public static void ejecutarAlgoritmoParalelo(double p, double pMax){
+        GeneradorNum g1 = new GeneradorNum(p,0, pMax/4);
+        GeneradorNum g2 = new GeneradorNum(p,pMax/4, pMax/2);
+        GeneradorNum g3 = new GeneradorNum(p,pMax/2, 3*(pMax/4));
+        GeneradorNum g4 = new GeneradorNum(p,3*(pMax/4), pMax);
 
         g1.start();
         g2.start();

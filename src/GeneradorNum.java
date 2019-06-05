@@ -1,36 +1,30 @@
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 import java.util.Random;
-import static java.lang.Math.pow;
 
 public class GeneradorNum extends Thread{
-    public int passwordNum;
-    public int crackNum;
-    public int tam;
-    public int pass;
-    public int inicio;
-    public int fin;
-    public int i, j, aux;
+    public double passwordNum;
+    public double crackNum;
+    public double inicio;
+    public double fin;
     Random rand = new Random();
-    public ArrayList<GeneradorNum> hilos;
+    DecimalFormat df2 = new DecimalFormat("0");
 
-    public GeneradorNum (int crackNum, int tam, int inicio, int fin){
-        this.tam = tam;
+    public GeneradorNum (double crackNum, double inicio, double fin){
         this.crackNum = crackNum;
         this.inicio = inicio;
         this.fin = fin;
-        this.hilos=new ArrayList<>();
     }
 
     public void run(){
         long startTime = System.nanoTime();
 
-        while (passwordNum != crackNum){
+        while (passwordNum!=crackNum){
             passwordNum = generaPassNum();
         }
 
         long endTime = System.nanoTime();
 
-        System.out.println("\n\nContraseña descifrada: " + passwordNum);
+        System.out.println("\n\nContraseña descifrada: " + df2.format(passwordNum));
         System.out.println("Tiempo: " + ((endTime-startTime)/1e6)/1000 + " seg.\n");
 
         System.out.println("Thread terminado: " + Thread.currentThread().getName());
@@ -39,21 +33,8 @@ public class GeneradorNum extends Thread{
         detenerPrograma();
     }
 
-    public int generaPassNum(){
-        passwordNum = 0;
-
-        /*
-        for (i=0; i<tam; i++){
-            //passwordNum = rand.nextInt((int)pow(10, tam)-1);
-
-        }
-*/
-        passwordNum = rand.nextInt(fin-inicio+1)+inicio;
-        //cambiar por un generador secuencial y no al azar
-
-//        for(i=inicio; i<fin; i++){
- //           passwordNum++;
-   //     }
+    public double generaPassNum(){
+        passwordNum = Math.floor(inicio + rand.nextDouble()*(fin-inicio));
 
         return passwordNum;
     }
