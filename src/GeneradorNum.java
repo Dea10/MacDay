@@ -1,30 +1,23 @@
-import java.util.ArrayList;
+import java.math.BigInteger;
 import java.util.Random;
-import static java.lang.Math.pow;
 
 public class GeneradorNum extends Thread{
-    public int passwordNum;
-    public int crackNum;
-    public int tam;
-    public int pass;
-    public int inicio;
-    public int fin;
-    public int i, j, aux;
+    public BigInteger passwordNum;
+    public BigInteger crackNum;
+    public BigInteger inicio;
+    public BigInteger fin;
     Random rand = new Random();
-    public ArrayList<GeneradorNum> hilos;
 
-    public GeneradorNum (int crackNum, int tam, int inicio, int fin){
-        this.tam = tam;
+    public GeneradorNum (BigInteger crackNum, BigInteger inicio, BigInteger fin){
         this.crackNum = crackNum;
         this.inicio = inicio;
         this.fin = fin;
-        this.hilos=new ArrayList<>();
     }
 
     public void run(){
         long startTime = System.nanoTime();
 
-        while (passwordNum != crackNum){
+        while (passwordNum.equals(crackNum)){
             passwordNum = generaPassNum();
         }
 
@@ -39,8 +32,8 @@ public class GeneradorNum extends Thread{
         detenerPrograma();
     }
 
-    public int generaPassNum(){
-        passwordNum = 0;
+    public BigInteger generaPassNum(){
+        //passwordNum = 0;
 
         /*
         for (i=0; i<tam; i++){
@@ -48,7 +41,8 @@ public class GeneradorNum extends Thread{
 
         }
 */
-        passwordNum = rand.nextInt(fin-inicio+1)+inicio;
+        //passwordNum = rand.nextInt(fin-inicio+1)+inicio;
+        passwordNum = BigInteger(fin.bitLength(), rand); //va a estar calculando todos desde 0, evitar eso!!!!!
         //cambiar por un generador secuencial y no al azar
 
 //        for(i=inicio; i<fin; i++){

@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,8 +7,8 @@ import static java.lang.Math.pow;
 public class Main {
     public static void main(String[] args){
 
-        int inputPassword; // int max 999,999,999
-        int pMax;
+        public BigInteger inputPassword; // int max 999,999,999
+        public BigInteger pMax;
         int respuesta;
         Scanner sc = new Scanner(System.in);
 
@@ -19,13 +20,14 @@ public class Main {
             switch (respuesta){
                 case 1:
                     System.out.print("\n\n\tIntroduce un password numérico a descifrar: ");
-                    inputPassword = sc.nextInt(); //agregar try catch y validación para int max
-                    pMax = (int)pow(10, Integer.toString(inputPassword).length())-1; // int pMax 999,999,999
+                    inputPassword = sc.nextBigInteger(); //agregar try catch y validación para int max
+                    pMax = inputPassword.toString().length()-1;
+                    pMax = (int)pow(10, BigInteger.toString(inputPassword).length())-1; // int pMax 999,999,999
                     ejecutarAlgoritmo(inputPassword, pMax);
                     break;
                 case 2:
                     System.out.print("\n\n\t-> Introduce un password numérico a descifrar: ");
-                    inputPassword = sc.nextInt(); //agregar try catch y validación para int max
+                    inputPassword = sc.nextBigInteger(); //agregar try catch y validación para int max
                     pMax = (int)pow(10, Integer.toString(inputPassword).length())-1; // int pMax 999,999,999
                     ejecutarAlgoritmoParalelo(inputPassword, pMax);
                     break;
